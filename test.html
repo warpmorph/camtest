@@ -51,20 +51,7 @@
 <script>
   function getElementByXpath(path) {  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;}
 </script>
-<script type="text/babel">
-  const element = <Webcam/>
-  function loadWebcam()
-  {
-      document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 1" + "</span>"; 
-
-      ReactDOM.render(
-          element,
-          //document.getElementById("root")
-          getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
-      );
-
-      document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 2" + "</span>"; 
-  }
+<script type="text/javascript">
 
   function loadMediacam()
   {
