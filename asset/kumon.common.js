@@ -111,18 +111,19 @@ window.kmnm =
 
         //카메라 보이기
         app.camera.show = (/*Object{x,y,w,h}*/ coord, /*Function*/ cbFunc) => {
+            document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call camera API -- 0" + "</span>"; 
+
             if (coord) {
+                document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call camera API -- 1" + "</span>"; 
+
                 if (!isNaN(coord.x) && !isNaN(coord.y) && !isNaN(coord.w) && !isNaN(coord.h)) {
                     console.error('===== Call [camera.show] API =====');
-                    document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call camera API" + "</span>"; 
+                    document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call camera API -- 2" + "</span>"; 
 
                     //TODO 테스트
                     if (cbFunc) {
                         cbFunc(true);
                     }
-
-                    console.log("call webcam");
-                    document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call camera show" + "</span>"; 
 
                     CallFunction();
                 }
