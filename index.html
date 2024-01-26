@@ -46,16 +46,20 @@
 <body style="padding:0;font-family:Arial,sans-serif;margin:0;" onload="apxLoad({pgIdx:'/*${PAGE_INDEX}*/'});">
 <!--${WGTS_HTML}-->
 <div id="root"></div>
+<p id="test" style="position: relative; z-index:10;"></p>
 <script>
     navigator.permissions.query({ name: 'camera' })
   .then((permissionObj) => {
     console.log(permissionObj.state);
+    document.getElementById("test").innerHTML =  "<span style='color: red;'>" + permissionObj.state+ "</span>"; 
     permission = permissionObj.state;
   })
   .catch((error) => {
     console.log('Got error :', error);
+    document.getElementById("test").innerHTML =  "<span style='color: red;'>" + error + "</span>"; 
+
   });
-  
+
     function getElementByXpath(path) {  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;}
 </script>
 <script type="text/babel">
