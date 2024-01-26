@@ -69,7 +69,20 @@
   function loadMediacam()
   {
     getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]").appendChild(document.createElement('video'));
-    document.getElementsByTagName('video')[1].play();
+    navigator.getUserMedia(
+        { audio: false, video: { width: 500, height: 300,x:480 } },
+        (stream) => {
+        const video =document.getElementsByTagName('video')[1]; 
+          video.srcObject = stream; 
+          video.onloadedmetadata = (e) => { console.log('Play Start');
+            video.play();
+          };
+        },
+        (err) => {
+          console.error(`The following error occurred: ${err.name}`);
+        },
+      );
+
   }
 
   function CallFunction()
