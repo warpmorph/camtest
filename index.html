@@ -57,7 +57,8 @@
 
         ReactDOM.render(
             <Webcam/>,
-            getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
+            document.getElementById("root")
+            // getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
         );
 
         document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 2" + "</span>"; 
