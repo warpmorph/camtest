@@ -16,6 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 <!--${WGTS_HEAD}-->
 <link rel="stylesheet" type="text/css" href="css/bxPageTransition.css" />
+<link rel="stylesheet" type="text/css" href="index_style.css">
 <!--${PLUGIN_HEAD}-->
 <!-- react lib load -->
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
@@ -51,12 +52,13 @@
   function getElementByXpath(path) {  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;}
 </script>
 <script type="text/babel">
+  const element = <Webcam/>
   function loadWebcam()
   {
       document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 1" + "</span>"; 
 
       ReactDOM.render(
-          <Webcam/>,
+          element,
           //document.getElementById("root")
           getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
       );
@@ -64,10 +66,16 @@
       document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 2" + "</span>"; 
   }
 
+  function loadMediacam()
+  {
+    getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]").appendChild(document.createElement('video'));
+    document.getElementsByTagName('video')[1].play();
+  }
+
   function CallFunction()
   {
     document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "CallFunction++" + "</span>"; 
-    // loadWebcam();
+    loadMediacam();
   }
 
   document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "babel script init complete" + "</span>"; 
