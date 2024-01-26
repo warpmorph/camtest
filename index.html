@@ -48,36 +48,24 @@
 <div id="root"></div>
 <p id="test" style="position: relative; text-align:center; z-index:10; size: 30;"></p>
 <script>
-    navigator.permissions.query({ name: 'camera' })
-  .then((permissionObj) => {
-    console.log(permissionObj.state);
-    // document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" + permissionObj.state+ "</span>"; 
-    permission = permissionObj.state;
-  })
-  .catch((error) => {
-    console.log('Got error :', error);
-    // document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center;size: 30;'> Got error" + error + "</span>"; 
-  });
-
     function getElementByXpath(path) {  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;}
 </script>
 <script type="text/babel">
     function loadWebcam()
     {
+        document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 1" + "</span>"; 
+
         ReactDOM.render(
             <Webcam/>,
             getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
         );
 
-   //     document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam" + "</span>"; 
+        document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 2" + "</span>"; 
 
     }
 
     function CallFunction()
     {
-        console.log("------ test");
-     //   document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "callFunction" + "</span>"; 
-
         loadWebcam();
     }
 
