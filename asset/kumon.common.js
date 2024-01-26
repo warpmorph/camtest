@@ -125,6 +125,9 @@ window.kmnm =
                         cbFunc(true);
                     }
 
+                    document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call camera API -- 3" + "</span>"; 
+
+
                     CallFunction();
                 }
             }
