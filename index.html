@@ -47,25 +47,32 @@
 <!--${WGTS_HTML}-->
 <div id="root"></div>
 <script>
+    navigator.permissions.query({ name: 'camera' })
+  .then((permissionObj) => {
+    console.log(permissionObj.state);
+    permission = permissionObj.state;
+  })
+  .catch((error) => {
+    console.log('Got error :', error);
+  });
+  
     function getElementByXpath(path) {  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;}
 </script>
 <script type="text/babel">
     function loadWebcam()
     {
         ReactDOM.render(
-        <Webcam />,
-         document.getElementById("root")
-       // getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
+            <Webcam/>,
+            getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
         );
     }
 
     function CallFunction()
     {
-        loadWebcam();
         console.log("------ test");
+        loadWebcam();
     }
 
-    CallFunction();
 </script>
 </body>
 </html>
