@@ -46,17 +46,17 @@
 <body style="padding:0;font-family:Arial,sans-serif;margin:0;" onload="apxLoad({pgIdx:'/*${PAGE_INDEX}*/'});">
 <!--${WGTS_HTML}-->
 <div id="root"></div>
-<p id="test" style="position: relative; z-index:10;"></p>
+<p id="test" style="position: relative; text-align:center; z-index:10; size: 30;"></p>
 <script>
     navigator.permissions.query({ name: 'camera' })
   .then((permissionObj) => {
     console.log(permissionObj.state);
-    document.getElementById("test").innerHTML =  "<span style='color: red;'>" + permissionObj.state+ "</span>"; 
+    document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" + permissionObj.state+ "</span>"; 
     permission = permissionObj.state;
   })
   .catch((error) => {
     console.log('Got error :', error);
-    document.getElementById("test").innerHTML =  "<span style='color: red;'>" + error + "</span>"; 
+    document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center;size: 30;'>" + error + "</span>"; 
 
   });
 
@@ -69,11 +69,16 @@
             <Webcam/>,
             getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
         );
+
+        document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam" + "</span>"; 
+
     }
 
     function CallFunction()
     {
         console.log("------ test");
+        document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "callFunction" + "</span>"; 
+
         loadWebcam();
     }
 
