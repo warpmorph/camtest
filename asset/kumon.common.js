@@ -140,6 +140,10 @@ window.kmnm =
             if (cbFunc) {
                 cbFunc(true);
             }
+
+            document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "camera Hide" + "</span>"; 
+
+            WebcamStop();
         };
 
         //앱 실행 환경에서는 모든 API를 Override 한다.

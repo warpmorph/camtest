@@ -52,14 +52,32 @@
   function getElementByXpath(path) {  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;}
 </script>
 <script type="text/babel">
-  const element = <Webcam/>
+
+  class WebcamCapture extends React.Component {
+    setRef = (webcam) => {
+      this.webcam = webcam;
+    }
+
+    stop = () => {
+      let stream = this.webcam.video.srcObject;
+      const tracks = stream.getTracks();
+      
+      tracks.forEach(track => track.stop());
+      this.webcam.video.srcObject = null;
+    };
+  }
+
+  const camref = new WebcamCapture();
+
   function loadWebcam()
   {
       document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "call loadWebcam ++ 1" + "</span>"; 
 
       ReactDOM.render(
-          element,
-          //document.getElementById("root")
+        <Webcam
+            audio={false}
+            ref={camref.setRef}
+          />,
           getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
       );
 
@@ -70,6 +88,18 @@
   {
     document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "CallFunction++" + "</span>"; 
     loadWebcam();
+  }
+
+  function WebcamStop()
+  {
+    try
+    {
+      camref.stop();
+      document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "cam stop!!" + "</span>"; 
+    }catch(error)
+    {
+      console.error('예외가 발생했습니다:', error.message);
+    }
   }
 
   document.getElementById("test").innerHTML =  "<span style='color: black;text-align:center; size: 30;'>" +  "babel script init complete" + "</span>"; 
