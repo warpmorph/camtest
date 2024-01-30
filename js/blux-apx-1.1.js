@@ -1,7 +1,6 @@
 window.bx = {};
 bx.g = {};
 bx.c = {};
-
 bx.Loader = {
     load: function(c) {
         if (!window.console) {
@@ -141,10 +140,8 @@ bx.Loader = {
                 return
             }
         }
-        console.log("check user agent 1 :" +navigator.userAgent )
     }
 };
-
 bx.$50 = {
     $0a: [],
     $5V: {},
@@ -6365,9 +6362,6 @@ bx.CGesture.prototype.$DM = function(n, f) {
         var p = n.clientY - bx.HCL.getScreenY(this.tag)
     }
     var l;
-
-    document.getElementById("test").innerHTML =  "<span style='color: red;'>" + n.type + "</span>"; 
-
     switch (n.type) {
         case "mousedown":
             if (!bx.Event.isLeftButton(n)) {
@@ -6415,7 +6409,7 @@ bx.CGesture.prototype.$DM = function(n, f) {
             l = bx.CGesture.MOUSE_OUT;
             break;
         case "click":
-            l = bx.CGesture.POINTER_START;
+            l = bx.CGesture.SYSTEM_CLICK;
             break
     }
     this.onEvent(this.tag, l, c, p, e, d, n);

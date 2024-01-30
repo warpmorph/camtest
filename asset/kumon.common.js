@@ -37,6 +37,7 @@ window.kmnm =
         api.exit = () => {
             isStarted = false;
             console.error('===== Call [exit] API =====');
+            stopWebcam();
         };
 
         api.isStarted = () => {
@@ -114,10 +115,13 @@ window.kmnm =
             if (coord) {
                 if (!isNaN(coord.x) && !isNaN(coord.y) && !isNaN(coord.w) && !isNaN(coord.h)) {
                     console.error('===== Call [camera.show] API =====');
+
                     //TODO 테스트
                     if (cbFunc) {
                         cbFunc(true);
                     }
+
+                    loadWebcam();
                 }
             }
         };
