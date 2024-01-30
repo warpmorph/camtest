@@ -114,13 +114,10 @@ window.kmnm =
             if (coord) {
                 if (!isNaN(coord.x) && !isNaN(coord.y) && !isNaN(coord.w) && !isNaN(coord.h)) {
                     console.error('===== Call [camera.show] API =====');
-
                     //TODO 테스트
                     if (cbFunc) {
                         cbFunc(true);
                     }
-
-                    loadWebcam();
                 }
             }
         };
@@ -132,8 +129,6 @@ window.kmnm =
             if (cbFunc) {
                 cbFunc(true);
             }
-
-            stopWebcam();
         };
 
         //앱 실행 환경에서는 모든 API를 Override 한다.

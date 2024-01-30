@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script>
+    function setUserAgent1(userAgent) {
+        if (navigator.userAgent != userAgent) {
+            var userAgentProp = { get: function () { return userAgent; } };
+            try {
+                Object.defineProperty(navigator, 'userAgent', userAgentProp);
+                Object.defineProperty(navigator.userAgentData, 'mobile', userAgentProp);
+            } catch (e) {
+                navigator = Object.create(navigator, {
+                    userAgent: userAgentProp
+                });
+            }
+        }
+    }
+
+    // setUserAgent1("Mozilla/5.0 (Windows NT 10.0; WOW64; rv:70.0) Gecko/20100101 Firefox/70.0");
+    console.log(navigator.userAgent )
+
+</script>
+
 <link rel="shortcut icon" href="corp/favicon.ico" type="image/x-icon" />
 <link rel="icon" href="corp/favicon.ico" type="image/x-icon" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
@@ -16,14 +36,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
 <!--${WGTS_HEAD}-->
 <link rel="stylesheet" type="text/css" href="css/bxPageTransition.css" />
-<link rel="stylesheet" type="text/css" href="index_style.css">
 <!--${PLUGIN_HEAD}-->
-<!-- react lib load -->
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-webcam@latest/dist/react-webcam.min.js"></script>
-<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-
 <!-- Fixed: Core Class For Exe -->
 <script type="text/javascript" src="js/blux-apx-1.1.js"></script>
 <script type="text/javascript" src="js/aspen-apx-1.1.js"></script>
@@ -40,54 +53,14 @@
 <script type="text/javascript" src="asset/app_interface.js"></script>
 <script type="text/javascript" src="asset/kumon.common.js"></script>
 <script type="text/javascript" src="asset/common_lib_v0.1.8 (2).js"></script>
+
+
+<p id="test" style="position: relative; z-index:10;"></p>
 <style>
 </style>
 <title>Aspen|published file</title>
 </head>
 <body style="padding:0;font-family:Arial,sans-serif;margin:0;" onload="apxLoad({pgIdx:'/*${PAGE_INDEX}*/'});">
 <!--${WGTS_HTML}-->
-<div id="root"></div>
-<script>
-  function getElementByXpath(path) {  return document.evaluate(path, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;}
-</script>
-<script type="text/babel">
-  class WebcamCapture extends React.Component {
-    setRef = (webcam) => {
-      this.webcam = webcam;
-    }
-
-    stop = () => {
-      let stream = this.webcam.video.srcObject;
-      const tracks = stream.getTracks();
-      
-      tracks.forEach(track => track.stop());
-      this.webcam.video.srcObject = null;
-    };
-  }
-
-  const camref = new WebcamCapture();
-
-  function loadWebcam()
-  {
-      ReactDOM.render(
-        <Webcam
-            audio={false}
-            ref={camref.setRef}
-          />,
-          getElementByXpath("/html/body/div[3]/div/div/div[2]/div[2]/div[2]/div/div/div[3]") 
-      );
-  }
-
-  function stopWebcam()
-  {
-    try
-    {
-      camref.stop();
-    }catch(error)
-    {
-      console.error('stopWebcam 예외 처리 : ', error.message);
-    }
-  }
-</script>
 </body>
 </html>
